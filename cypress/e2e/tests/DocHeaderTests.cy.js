@@ -8,8 +8,11 @@ import DocBasePage from "../pages/DocBasePage.cy";
       });
 
       it('verifies Announcement Bar', () => {
-          cy.log("it ran sucessfully");
           docBasePage.verifyAnnouncementBar();
+      });
+
+      it('verifies Nav bar Deeplinks', () => {
+        docBasePage.verfiyNavBarLinks();
       });
 
   });
