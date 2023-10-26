@@ -15,4 +15,8 @@ import DocBasePage from "../pages/DocBasePage.cy";
         docBasePage.verfiyNavBarLinks();
       });
 
+      it('verifies Color Mode toggle', () => {
+          docBasePage.verifyColorModeToggle();
+      })
+
   });

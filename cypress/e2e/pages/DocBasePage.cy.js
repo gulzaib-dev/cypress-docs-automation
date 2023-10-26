@@ -7,6 +7,7 @@ class DocBasePage extends BasePage {
     constructor() {
         super();
         this.docsCommonSelectors = {
+            htmlTheme: '.docs-wrapper',
             announcementBar:
                 {
                     mainBanner: 'div[class*=announcementBar][role=banner]',
@@ -18,18 +19,19 @@ class DocBasePage extends BasePage {
                     inner: '.navbar__inner',
                     itemDiv: '.navbar__items',
                     item: '.navbar__item.navbar__link',
-                    activeItem: 'navbar__link--active'
+                    activeItem: 'navbar__link--active',
+                    colorModeToggle: 'button[class*=darkNavbarColorModeToggle]'
                 }
         };
     }
 
-    openDocPage(){
+    openDocPage() {
         cy.visit(this.baseUrl);
         cy.url().should('include', 'docs');
         cy.log("Visited docs page with URL" + this.baseUrl);
     }
 
-    verifyAnnouncementBar(){
+    verifyAnnouncementBar() {
         cy.get(this.docsCommonSelectors.announcementBar.mainBanner).should('be.visible');
         cy.get(this.docsCommonSelectors.announcementBar.content)
             .should('be.visible')
@@ -45,7 +47,7 @@ class DocBasePage extends BasePage {
         })
     }
 
-    verifylink(link){
+    verifylink(link) {
         cy.get(this.docsCommonSelectors.navBar.item)
             .contains(link)
             .should('be.visible')
@@ -56,6 +58,15 @@ class DocBasePage extends BasePage {
         cy.get(this.docsCommonSelectors.navBar.item)
             .contains(link)
             .should('have.class', this.docsCommonSelectors.navBar.activeItem)
+    }
+
+    verifyColorModeToggle() {
+        cy.get(this.docsCommonSelectors.navBar.colorModeToggle)
+            .should('be.visible')
+            .click();
+
+        cy.get(this.docsCommonSelectors.htmlTheme)
+            .should('have.attr', 'data-theme', 'dark');
     }
 
     closeBanner(){
