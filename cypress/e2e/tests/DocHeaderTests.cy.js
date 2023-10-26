@@ -7,8 +7,9 @@ import DocBasePage from "../pages/DocBasePage.cy";
         docBasePage.openDocPage();
       });
 
-      it('verifies visit to doc page', () => {
+      it('verifies Announcement Bar', () => {
           cy.log("it ran sucessfully");
+          docBasePage.verifyAnnouncementBar();
       });
 
   });
